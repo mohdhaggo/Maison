@@ -1,0 +1,22 @@
+﻿
+> maison-lumiere@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.15
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 3.8s
+ ○ Compiling / ...
+ ✓ Compiled / in 13.7s (1253 modules)
+ GET / 200 in 14170ms
+ ○ Compiling /products/[slug] ...
+ ✓ Compiled /products/[slug] in 8.8s (1248 modules)
+ GET /products/nuit-de-velours 200 in 9888ms
+ ○ Compiling /api/auth/register ...
+ ✓ Compiled /api/auth/register in 1175ms (750 modules)
+ POST /api/auth/register 200 in 1901ms
+ ✓ Compiled /api/orders in 220ms (752 modules)
+ POST /api/orders 200 in 363ms
+ GET /api/orders 200 in 29ms
