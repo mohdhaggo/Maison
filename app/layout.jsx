@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata = {
   title: "Maison Lumière — Fine Fragrance, Bottled Emotion",
   description:
-    "Maison Lumière crafts luxury perfumes that touch the heart. Discover eight stories told in scent.",
+    "Maison Lumière crafts luxury perfumes that touch the heart. Discover nine stories told in scent.",
 };
 
 export default function RootLayout({ children }) {

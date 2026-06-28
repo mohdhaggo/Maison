@@ -1,18 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useCart } from "./CartContext";
 import ProductCard from "./ProductCard";
+import BottleStage from "./BottleStage";
 
 function NoteColumn({ title, notes, accent, delay }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 24, rotateX: -8 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
       viewport={{ once: true }}
-      transition={{ delay }}
+      transition={{ delay, duration: 0.6 }}
+      style={{ transformStyle: "preserve-3d" }}
       className="glass rounded-2xl p-6"
     >
       <h4 className="uppercase-spaced text-[10px] mb-4" style={{ color: accent }}>
@@ -35,6 +37,13 @@ export default function ProductDetail({ product, related }) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const bottleY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+
   function handleAdd() {
     addItem(product, qty);
     setAdded(true);
@@ -43,11 +52,11 @@ export default function ProductDetail({ product, related }) {
 
   return (
     <div className="pt-24">
-      {/* ambient color wash */}
+      {/* ambient color wash driven by the perfume's palette */}
       <div
-        className="pointer-events-none fixed inset-0 -z-0 opacity-40"
+        className="pointer-events-none fixed inset-0 -z-0 opacity-50"
         style={{
-          background: `radial-gradient(1000px 600px at 20% 10%, ${product.accent}55, transparent 60%), radial-gradient(800px 500px at 90% 30%, ${product.accent2}44, transparent 60%)`,
+          background: `radial-gradient(1000px 600px at 20% 10%, ${product.accent}55, transparent 60%), radial-gradient(900px 600px at 90% 40%, ${product.accent2}44, transparent 60%)`,
         }}
       />
 
@@ -56,31 +65,26 @@ export default function ProductDetail({ product, related }) {
           ← Back to Collection
         </Link>
 
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          {/* IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
+        <div ref={heroRef} className="grid lg:grid-cols-2 gap-14 items-center">
+          {/* 3D FLACON */}
+          <motion.div style={{ y: bottleY }} className="relative h-[560px]">
+            {/* slow color halo */}
             <motion.div
               animate={{ rotate: [0, 360] }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-8 rounded-full opacity-30 blur-3xl"
+              transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-8 rounded-full opacity-40 blur-3xl"
               style={{ background: `conic-gradient(from 0deg, ${product.accent}, ${product.accent2}, ${product.accent})` }}
             />
-            <motion.div
-              animate={{ y: [0, -16, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative h-[520px] rounded-[2rem] overflow-hidden glass"
-            >
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${product.image})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
-            </motion.div>
+            <BottleStage
+              color={product.accent}
+              color2={product.accent2}
+              spin={0.32}
+              floatIntensity={1}
+              className="absolute inset-0"
+            />
+            <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] uppercase-spaced text-cream/40">
+              Drag your cursor · the flacon follows
+            </p>
           </motion.div>
 
           {/* INFO */}
@@ -107,7 +111,6 @@ export default function ProductDetail({ product, related }) {
                 ))}
               </div>
 
-              {/* Emotional story */}
               <motion.blockquote
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -147,7 +150,7 @@ export default function ProductDetail({ product, related }) {
         </div>
 
         {/* INGREDIENTS / NOTES PYRAMID */}
-        <section className="mt-28">
+        <section className="mt-28" style={{ perspective: 1200 }}>
           <div className="text-center mb-12">
             <p className="uppercase-spaced text-xs text-gold/70 mb-3">The Composition</p>
             <h2 className="font-serif text-4xl">How It Unfolds on Skin</h2>
@@ -164,7 +167,7 @@ export default function ProductDetail({ product, related }) {
         </section>
 
         {/* RELATED */}
-        <section className="mt-28">
+        <section className="mt-28 pb-12">
           <h2 className="font-serif text-3xl mb-10 text-center">
             You May Also <span className="text-shimmer">Fall For</span>
           </h2>
