@@ -46,17 +46,17 @@ body {
 
 /* Glass cards */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(212, 175, 101, 0.22);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .glass-strong {
-  background: rgba(20, 12, 30, 0.72);
+  background: rgba(20, 12, 30, 0.82);
   border: 1px solid rgba(212, 175, 101, 0.28);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* Gold button */
@@ -108,4 +108,19 @@ body {
 .uppercase-spaced {
   text-transform: uppercase;
   letter-spacing: 0.32em;
+}
+
+/* Respect users who ask for less motion — kill infinite/auto animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

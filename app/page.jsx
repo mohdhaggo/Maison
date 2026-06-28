@@ -25,23 +25,23 @@ export default function HomePage() {
         ref={heroRef}
         className="relative h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* floating colour orbs */}
-        {[...Array(6)].map((_, i) => (
+        {/* floating colour orbs (kept light for smooth compositing) */}
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full blur-3xl"
+            className="absolute rounded-full blur-2xl will-change-transform"
             style={{
-              width: 160 + i * 50,
-              height: 160 + i * 50,
-              left: `${8 + i * 15}%`,
-              top: `${12 + (i % 3) * 26}%`,
+              width: 200 + i * 60,
+              height: 200 + i * 60,
+              left: `${12 + i * 28}%`,
+              top: `${16 + (i % 2) * 30}%`,
               background:
                 i % 2 === 0
-                  ? "radial-gradient(circle, rgba(212,175,101,0.35), transparent 70%)"
-                  : "radial-gradient(circle, rgba(232,160,191,0.3), transparent 70%)",
+                  ? "radial-gradient(circle, rgba(212,175,101,0.3), transparent 70%)"
+                  : "radial-gradient(circle, rgba(232,160,191,0.28), transparent 70%)",
             }}
-            animate={{ y: [0, -34, 0], x: [0, 18, 0] }}
-            transition={{ duration: 9 + i, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, -28, 0], x: [0, 16, 0] }}
+            transition={{ duration: 11 + i * 2, repeat: Infinity, ease: "easeInOut" }}
           />
         ))}
 
@@ -260,15 +260,15 @@ function SpectrumSection() {
               key={p.slug}
               href={`/products/${p.slug}`}
               onMouseEnter={() => setActive(i)}
-              className="group relative shrink-0 w-[78vw] sm:w-[44vw] lg:w-[27vw] h-[58vh] rounded-[2rem] overflow-hidden glass"
+              className="group relative shrink-0 w-[78vw] sm:w-[44vw] lg:w-[27vw] h-[58vh] rounded-[2rem] overflow-hidden border border-gold/15 bg-ink/40"
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                 style={{ backgroundImage: `url(${p.image})` }}
               />
               <div
-                className="absolute inset-0 opacity-70 mix-blend-multiply transition-opacity group-hover:opacity-55"
-                style={{ background: `linear-gradient(160deg, ${p.accent}cc, ${p.accent2}55 60%, transparent)` }}
+                className="absolute inset-0 opacity-65 transition-opacity group-hover:opacity-45"
+                style={{ background: `linear-gradient(160deg, ${p.accent}bb, ${p.accent2}44 60%, transparent)` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-7">

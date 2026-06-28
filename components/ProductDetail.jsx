@@ -65,7 +65,7 @@ export default function ProductDetail({ product, related }) {
           ← Back to Collection
         </Link>
 
-        <div ref={heroRef} className="grid lg:grid-cols-2 gap-14 items-center">
+        <div ref={heroRef} className="relative grid lg:grid-cols-2 gap-14 items-center">
           {/* 3D FLACON */}
           <motion.div style={{ y: bottleY }} className="relative h-[560px]">
             {/* slow color halo */}

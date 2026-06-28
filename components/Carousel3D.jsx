@@ -13,17 +13,26 @@ import { useCart } from "./CartContext";
 export default function Carousel3D({ products }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
   const n = products.length;
 
   const next = () => setActive((a) => (a + 1) % n);
   const prev = () => setActive((a) => (a - 1 + n) % n);
 
-  // auto-rotate
   useEffect(() => {
-    if (paused) return;
-    const id = setInterval(next, 3600);
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const on = () => setReduced(m.matches);
+    on();
+    m.addEventListener?.("change", on);
+    return () => m.removeEventListener?.("change", on);
+  }, []);
+
+  // auto-rotate (off when paused or for reduced-motion users)
+  useEffect(() => {
+    if (paused || reduced) return;
+    const id = setInterval(next, 3800);
     return () => clearInterval(id);
-  }, [paused, n]);
+  }, [paused, reduced, n]);
 
   // signed distance from the active card, wrapped to the shortest way round
   function rel(i) {
@@ -72,7 +81,6 @@ export default function Carousel3D({ products }) {
                 rotateY: Math.max(-45, Math.min(45, d * -32)),
                 scale: isActive ? 1 : 0.82 - (abs - 1) * 0.06,
                 opacity: visible ? 1 - abs * 0.32 : 0,
-                filter: `brightness(${isActive ? 1 : 0.6})`,
               }}
               transition={{ type: "spring", stiffness: 120, damping: 20 }}
               style={{
@@ -135,7 +143,7 @@ function Card({ product, isActive }) {
           background: `linear-gradient(140deg, ${product.accent}, ${product.accent2})`,
         }}
       />
-      <div className="relative glass-strong rounded-[1.8rem] overflow-hidden">
+      <div className="relative rounded-[1.8rem] overflow-hidden border border-gold/15 bg-plum/85">
         <Link href={`/products/${product.slug}`} className={isActive ? "" : "pointer-events-none"}>
           <div className="relative h-[300px] overflow-hidden">
             <div
