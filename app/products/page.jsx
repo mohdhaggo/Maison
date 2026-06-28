@@ -20,7 +20,7 @@ export default function CollectionPage() {
           animate={{ opacity: 1, y: 0 }}
           className="font-serif text-5xl md:text-6xl"
         >
-          Eight <span className="text-shimmer">Stories</span> in Glass
+          Nine <span className="text-shimmer">Stories</span> in Glass
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
