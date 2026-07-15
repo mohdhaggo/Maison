@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
+  --font-playfair: "Playfair Display", Georgia, serif;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
-  --font-inter: "Inter", system-ui, sans-serif;
+  --font-outfit: "Outfit", system-ui, sans-serif;
 }
 
 html {
@@ -13,11 +14,10 @@ html {
 
 body {
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(123, 78, 168, 0.25), transparent 60%),
-    radial-gradient(1000px 500px at 100% 0%, rgba(212, 175, 101, 0.18), transparent 55%),
-    radial-gradient(900px 700px at 50% 120%, rgba(232, 160, 191, 0.2), transparent 60%),
-    #0b0710;
-  color: #f7f1e6;
+    radial-gradient(1200px 800px at 50% -12%, rgba(201, 169, 110, 0.10), transparent 60%),
+    radial-gradient(900px 600px at 50% 118%, rgba(212, 136, 28, 0.08), transparent 60%),
+    #0A0A0A;
+  color: #F5F0E8;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -26,11 +26,11 @@ body {
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #d4af65 0%,
-    #f2e2bd 25%,
-    #fff7e0 50%,
-    #f2e2bd 75%,
-    #d4af65 100%
+    #C9A96E 0%,
+    #E8D5A3 25%,
+    #FFF3D0 50%,
+    #E8D5A3 75%,
+    #C9A96E 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -86,10 +86,31 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #0b0710; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#7b4ea8, #d4af65);
+  background: linear-gradient(#C9A96E, #D4881C);
   border-radius: 10px;
+}
+
+/* Champagne CTA button */
+.btn-champagne {
+  background: linear-gradient(135deg, #C9A96E, #E8D5A3 50%, #C9A96E);
+  color: #0A0A0A;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  box-shadow: 0 10px 30px -10px rgba(201, 169, 110, 0.55);
+}
+.btn-champagne:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 0 44px 2px rgba(255, 215, 0, 0.45);
+}
+
+/* Thin animated hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.6), transparent);
 }
 
 .hide-scrollbar::-webkit-scrollbar { display: none; }
