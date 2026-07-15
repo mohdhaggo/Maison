@@ -44,9 +44,9 @@ export default function CardsTornado() {
     lastScrollY.current = window.scrollY;
 
     const render = () => {
-      // idle drift + inertia
-      rot.current += vel.current + 0.06;
-      vel.current *= 0.94;
+      // gentle idle drift + inertia
+      rot.current += vel.current + 0.02;
+      vel.current *= 0.93;
       if (Math.abs(vel.current) < 0.002) vel.current = 0;
 
       stage.style.transform = `translateZ(${-R}px) rotateX(-7deg) rotateY(${rot.current}deg)`;
@@ -81,8 +81,8 @@ export default function CardsTornado() {
       const rect = section.getBoundingClientRect();
       const engaged = rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4;
       if (engaged) {
-        vel.current += delta * 0.22;
-        vel.current = Math.max(-14, Math.min(14, vel.current));
+        vel.current += delta * 0.07;
+        vel.current = Math.max(-5, Math.min(5, vel.current));
       }
     };
 
@@ -99,8 +99,8 @@ export default function CardsTornado() {
       const dx = e.clientX - d.lastX;
       d.lastX = e.clientX;
       d.moved += Math.abs(dx);
-      rot.current += dx * 0.5;
-      vel.current = dx * 0.5; // carry momentum on release
+      rot.current += dx * 0.3;
+      vel.current = dx * 0.3; // carry momentum on release
     };
     const onUp = () => {
       drag.current.on = false;
