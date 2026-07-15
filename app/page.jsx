@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { products, getProduct } from "@/lib/products";
 import Carousel3D from "@/components/Carousel3D";
-import HeroCinematic from "@/components/HeroCinematic";
+import HeroBottle from "@/components/HeroBottle";
 import NotesOrbs from "@/components/NotesOrbs";
 import Testimonials from "@/components/Testimonials";
 import ShopSection from "@/components/ShopSection";
@@ -15,8 +15,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* 1 · CINEMATIC MULTI-HERO */}
-      <HeroCinematic />
+      {/* 1 · CINEMATIC PHOTOREAL HERO (auto-swaps to public/videos/hero.mp4 if present) */}
+      <HeroBottle />
 
       {/* 2 · FRAGRANCE STORY */}
       <StorySection />
