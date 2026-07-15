@@ -131,6 +131,18 @@ body {
   letter-spacing: 0.32em;
 }
 
+/* Drifting rose petals (tornado centre) */
+@keyframes petalFall {
+  from { transform: translateY(-15vh); }
+  to { transform: translateY(118vh); }
+}
+@keyframes petalSway {
+  0%, 100% { transform: translateX(-14px) rotate(-18deg); }
+  50% { transform: translateX(14px) rotate(18deg); }
+}
+.petal-fall { animation: petalFall linear infinite; will-change: transform; }
+.petal-sway { animation: petalSway ease-in-out infinite alternate; }
+
 /* Respect users who ask for less motion — kill infinite/auto animations */
 @media (prefers-reduced-motion: reduce) {
   *,

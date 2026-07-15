@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { products } from "@/lib/products";
+import PetalDrift from "./PetalDrift";
 
 const N = products.length;
 const STEP = 360 / N;
@@ -158,6 +159,9 @@ export default function CardsTornado() {
           }}
         />
 
+        {/* rose petals drifting through the hollow centre */}
+        <PetalDrift count={16} />
+
         <div className="relative z-20 mx-auto max-w-7xl w-full px-6 pt-8">
           <p className="uppercase tracking-[0.32em] text-xs text-gold/70 mb-3">The Spectrum</p>
           <h2 className="font-display text-4xl md:text-6xl">
@@ -167,7 +171,7 @@ export default function CardsTornado() {
         </div>
 
         {/* tornado */}
-        <div className="relative flex-1 flex items-center justify-center" style={{ perspective: "1600px" }}>
+        <div className="relative z-10 flex-1 flex items-center justify-center" style={{ perspective: "1600px" }}>
           <div
             ref={stageRef}
             className="absolute inset-0"
