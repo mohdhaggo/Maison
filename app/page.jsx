@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { products, getProduct } from "@/lib/products";
 import Carousel3D from "@/components/Carousel3D";
-import HeroVideo from "@/components/HeroVideo";
+import HeroFrameScrub from "@/components/HeroFrameScrub";
 import NotesOrbs from "@/components/NotesOrbs";
 import Testimonials from "@/components/Testimonials";
 import ShopSection from "@/components/ShopSection";
@@ -15,8 +15,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* 1 · LOOPING CINEMATIC VIDEO HERO (parallax on scroll) */}
-      <HeroVideo />
+      {/* 1 · SCROLL-DRIVEN FRAME-SEQUENCE HERO (canvas scrub) */}
+      <HeroFrameScrub />
 
       {/* 2 · FRAGRANCE STORY */}
       <StorySection />
