@@ -7,7 +7,7 @@ import { products, getProduct } from "@/lib/products";
 import Carousel3D from "@/components/Carousel3D";
 import HeroFrameScrub from "@/components/HeroFrameScrub";
 import NotesOrbs from "@/components/NotesOrbs";
-import SpectrumCylinder from "@/components/SpectrumCylinder";
+import CardsTornado from "@/components/CardsTornado";
 import Testimonials from "@/components/Testimonials";
 import ShopSection from "@/components/ShopSection";
 
@@ -25,8 +25,8 @@ export default function HomePage() {
       {/* 3 · THE NOTES PYRAMID */}
       <NotesOrbs />
 
-      {/* 4 · THE SPECTRUM — 3D cylindrical carousel */}
-      <SpectrumCylinder />
+      {/* 4 · THE SPECTRUM — 3D cards tornado */}
+      <CardsTornado />
 
       {/* 5 · BEGIN YOUR STORY — 3D carousel */}
       <section className="relative mx-auto max-w-7xl px-6 py-28">
