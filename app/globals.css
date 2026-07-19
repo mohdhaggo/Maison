@@ -20,6 +20,7 @@ body {
   color: #F5F0E8;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* stop any 3D/parallax layer from causing sideways scroll */
 }
 
 /* Gold shimmering text */

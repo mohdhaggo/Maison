@@ -46,7 +46,7 @@ export default function Carousel3D({ products }) {
 
   return (
     <div
-      className="relative select-none"
+      className="relative select-none overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -72,10 +72,10 @@ export default function Carousel3D({ products }) {
           return (
             <motion.div
               key={p.slug}
-              className="absolute left-1/2 top-1/2 w-[300px] sm:w-[340px]"
+              className="absolute left-1/2 top-1/2 w-[82vw] max-w-[320px] sm:w-[340px]"
               initial={false}
               animate={{
-                x: `calc(-50% + ${d * 220}px)`,
+                x: `calc(-50% ${d >= 0 ? "+" : "-"} ${Math.abs(d)} * clamp(120px, 46vw, 220px))`,
                 y: "-50%",
                 z: -abs * 260,
                 rotateY: Math.max(-45, Math.min(45, d * -32)),
